@@ -11,9 +11,9 @@
   <div>
     <%= link_to book_path(book.id) do %>
       <%= image_tag book.get_image %>
+    <% end %>
       <%= book.title %>
       <%= book.body %>
-    <% end %>
   </div>
 <% end %>
 

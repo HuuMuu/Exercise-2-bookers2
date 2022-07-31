@@ -1,10 +1,14 @@
+
 <h1>Books</h1>
 <% @books.each do |book| %>
 <div>
   <%= link_to book_path(book.id) do %>
     <%= image_tag book.get_image %>
   <% end %>
-  <%= image_tag book.user.get_profile_image(100,100) %>
+  <% if @User == current_user %>
+    <p><%= link_to "edit", edit_user_path(@user.id) %></p>
+  <% end %>
   <%= book.title %>
   <%= book.body %>
 </div>
+<% end %>
