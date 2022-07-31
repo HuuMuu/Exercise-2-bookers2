@@ -7,4 +7,13 @@
     <%= f.submit 'Create Book' %>
 <% end %>
 <h1>Books</h1>
+<% @books.each do |book| %>
+  <div>
+    <%= link_to book_path(book.id) do %>
+      <%= image_tag book.get_image %>
+      <%= book.title %>
+      <%= book.body %>
+    <% end %>
+  </div>
+<% end %>
 
