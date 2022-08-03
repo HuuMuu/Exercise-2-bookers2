@@ -1,20 +1,33 @@
+<hi>User info</hi>
+<div>
+  <%= image_tag @user.get_profile_image %>
+  <h3>name <%= @user.name %></h3>
+  <h3>introduction <%= @user.introduction %></h3>
+</div>
 <p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
 
 <h1>New book</h1>
-<%= form_with model: @book do |f| %>
-  <h4>Title</h4>
+<div>
+  <%= form_with model: Book.new do |f| %>
+    <h4>Title</h4>
     <%= f.text_field :title %>
+    <h4>Opinion</h4>
     <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
-<% end %>
+    <%= f.submit "Create Book" %>
+  <% end %>
+</div>
 
 <h1>Books</h1>
 <% @books.each do |book| %>
 <div>
-  <%= link_to book_path(book.id) do %>
-    <%= image_tag book.get_image %>
+  <%= link_to user_path(@user.id) do %>
+    <%= image_tag book.user.get_profile_image %>
   <% end %>
-  <%= book.title %>
+  <%= link_to book_path(book.id) do %>
+    <%= book.title %>
+  <% end %>
   <%= book.body %>
 </div>
 <% end %>
+
+<p>CopyRight Infratop.inc</p>

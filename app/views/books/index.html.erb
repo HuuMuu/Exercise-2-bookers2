@@ -9,10 +9,12 @@
 <h1>Books</h1>
 <% @books.each do |book| %>
   <div>
-    <%= link_to book_path(book.id) do %>
+    <%= link_to user_path(current_user.id) do %>
       <%= image_tag book.get_image %>
     <% end %>
+    <%= link_to book_path(book.id) do %>
       <%= book.title %>
+    <% end %>
       <%= book.body %>
   </div>
 <% end %>
