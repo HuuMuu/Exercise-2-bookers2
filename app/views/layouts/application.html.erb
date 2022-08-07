@@ -14,23 +14,36 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="/">Bookers</a>
-          <div class="row">
+          <div class="navbar-brand"><span><%= link_to 'Bookers', root_path %></span></div>
+          <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+          <div class="row">
             <li class="nav-item"><i class="fa-solid fa-house-chimney text-light"></i><%= link_to 'Home', user_path(current_user.id), class: 'text-light' %></li>
             <li class="nav-item"><i class="fa-solid fa-users text-light"></i><%= link_to 'Users', users_path, class: 'text-light' %></li>
             <li class="nav-item"><i class="fa-solid fa-book-open text-light"></i><%= link_to 'Books', books_path, class: 'text-light' %></li>
             <li class="nav-item"><i class="fa-solid fa-arrow-right-from-bracket text-light"></i><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'text-light' %></li>
+          </div>
           <% else %>
+          <div class="row">
             <li class="nav-item"><i class="fa-solid fa-house-chimney text-light"></i><%= link_to 'Home', root_path, class: 'nav-link text-light' %></li>
             <li class="nav-item"><i class="fa-solid fa-link text-light"></i><%= link_to 'About', about_path, class: 'nav-link text-light' %></li>
             <li class="nav-item"><i class="fa-solid fa-user-plus text-light"></i><%= link_to 'Sign up', new_user_registration_path, class: 'nav-link text-light' %></li>
             <li class="nav-item"><i class="fa-solid fa-arrow-right-to-bracket text-light"></i><%= link_to 'Log in', new_user_session_path, class: 'nav-link text-light' %></li>
-          <% end %>
           </div>
+          <% end %>
+          </ul>
         </div>
       </nav>
     </header>
     <%= yield %>
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
