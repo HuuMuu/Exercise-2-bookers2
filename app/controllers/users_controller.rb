@@ -1,11 +1,22 @@
 class UsersController < ApplicationController
+  #before_action :correct_user, only: [:edit, :update]
   def show
     @user = User.find(params[:id])
     @books = @user.books
     @books = Book.all
   end
 
+  def new
+    @user = User.new(user_params)
+  end
+
   def create
+    @user = user.new(user_params)
+    if @user.save
+      redirect_to root_path, notice: "Welcome! You have signed up successfully"
+    else
+      render :new
+    end
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
@@ -33,10 +44,20 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-
   private
+
+  #def correct_user
+    #@user = user.find(params[:id])
+    #redirect_to(user_path) unless @user == current_user
+  #end
 
   def user_params
     params.require(:user).permit(:name, :introduction)
   end
+
+  #def correct_user
+    #@book = Book.find(params[:id])
+    #@user = @book.user
+    #redirect_to(books_path) unless @user == current_user
+  #end
 end
