@@ -2,15 +2,22 @@
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
-      <%= image_tag @user.get_profile_image %>
+      <%= image_tag @book.user.get_profile_image %>
       <table class="table">
         <tbody>
-          <tr></tr>
-          <tr>name <%= @user.name %></tr>
-          <tr>introduction <%= @user.introduction %></tr>
+          <tr>
+            <th>name</th><th><%= @book.user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th><th><%= @book.user.introduction %></th>
+          </tr>
         </tbody>
       </table>
-      <div class="row"><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></div>
+      <div class="row">
+        <%= link_to edit_user_path(@book.user.id), class: 'btn btn-outline-secondary btn-block' do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      </div>
 
       <h2 class="mt-3">New book</h2>
       <div>
@@ -27,7 +34,7 @@
           <tbody></tbody>
           <tr>
             <td>
-              <%= link_to user_path(current_user.id) do %>
+              <%= link_to user_path(@book.user.id) do %>
                 <%= image_tag @book.get_image %>
                 <%= @book.user.name %>
               <% end %>
@@ -40,7 +47,7 @@
             <tb><%= @book.body %></tb>
             <tb>
               <% if @book.user == current_user %>
-                <%= link_to "edit", edit_book_path(@book.id) %>
+                <%= link_to "Edit", edit_book_path(@book.id) %>
               <% end %>
             </tb>
             <tb>

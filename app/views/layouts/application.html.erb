@@ -16,7 +16,11 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <div class="navbar-brand"><span><%= link_to 'Bookers', root_path %></span></div>
+          <div class="navbar-brand">
+            <%= link_to root_path, class: 'nav-link text-light' do %>
+              <span>Bookers</span>
+            <% end %>
+          </div>
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
           <div class="row">
@@ -27,7 +31,7 @@
             </li>
             <li class="nav-item">
               <%= link_to users_path, class: 'nav-link text-light' do %>
-              <i class"faa fa-users"></i>Users
+              <i class="fas fa-users"></i>Users
               <% end %>
             </li>
             <li class="nav-item">

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  #before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
+
   def show
     @user = User.find(params[:id])
     @books = @user.books
-    @books = Book.all
   end
 
   def new
@@ -46,23 +46,14 @@ class UsersController < ApplicationController
 
   private
 
-  #def correct_user
-    #@user = user.find(params[:id])
-    #redirect_to(user_path) unless @user == current_user
-  #end
 
   def user_params
     params.require(:user).permit(:name, :introduction)
   end
 
-  #def correct_user
-    #@user = user.find(params[:id])
-    #redirect_to(user_path) unless @user == current_user
-  #end
-  
-  #def correct_user
-    #@book = Book.find(params[:id])
-    #@user = @book.user
-    #redirect_to(books_path) unless @user == current_user
-  #end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user.id) unless @user == current_user
+  end
+
 end
