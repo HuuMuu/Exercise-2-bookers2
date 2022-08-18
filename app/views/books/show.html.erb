@@ -27,34 +27,36 @@
           <div class="form-group"><%= f.submit "Create Book" %></div>
         <% end %>
       </div>
+    </div>
 
-      <div class="col-md-8 offset-md-1">
-       <h2>Book detail</h2>
-        <table class="table">
-          <tbody></tbody>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
           <tr>
             <td>
               <%= link_to user_path(@book.user.id) do %>
-                <%= image_tag @book.get_image %>
-                <%= @book.user.name %>
+                <%= image_tag @book.get_image %><%= @book.user.name %>
               <% end %>
             </td>
             <td>
-             <%= link_to book_path(@book.id) do %>
+              <%= link_to book_path(@book.id) do %>
                 <%= @book.title %>
               <% end %>
             </td>
-            <tb><%= @book.body %></tb>
-            <tb>
+            <td>
+              <%= @book.body %>
+            </td>
+            <td>
               <% if @book.user == current_user %>
                 <%= link_to "Edit", edit_book_path(@book.id) %>
               <% end %>
-            </tb>
-            <tb>
+            </td>
+            <td>
               <% if @book.user == current_user %>
                 <%= link_to "Destroy", book_path(@book), method: :delete %>
               <% end %>
-            </tb>
+            </td>
           </tr>
         </tbody>
       </table>
